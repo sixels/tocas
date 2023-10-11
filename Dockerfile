@@ -24,5 +24,7 @@ RUN npm install -g pnpm && \
 # Copy the rest of the application code to the container
 COPY . .
 
+RUN pnpm build
+
 # Start the bot
 CMD ["pnpm", "start"]

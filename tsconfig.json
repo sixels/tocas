@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+
+    "outDir": "dist",
+    "rootDir": "./",
+
+    "module": "CommonJS",
+
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
+
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+
+    "skipLibCheck": true,
+
+    "paths": {
+      "@tocas/*": ["./src/lib/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", "src/lib/**/*"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
+}

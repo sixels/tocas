@@ -26,5 +26,7 @@ COPY . .
 
 RUN pnpm build
 
+EXPOSE 8080
+
 # Start the bot
 CMD ["pnpm", "start"]

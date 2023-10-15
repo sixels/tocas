@@ -9,7 +9,9 @@ import { ICommand } from "./commands/command";
 import { IEventHandler } from "./events/event";
 import { JoinCommand } from "./commands/join";
 import { LeaveCommand } from "./commands/leave";
+import { ListCommand } from "./commands/list";
 import { PlayCommand } from "./commands/play";
+import { SkipCommand } from "./commands/skip";
 import { YtDlpPlugin } from "@distube/yt-dlp";
 
 export class Tocas {
@@ -37,6 +39,8 @@ export class Tocas {
       LeaveCommand,
       PauseCommand,
       ResumeCommand,
+      SkipCommand,
+      ListCommand,
     ];
     this.eventHandlers = [
       HandleReady(this.commands),

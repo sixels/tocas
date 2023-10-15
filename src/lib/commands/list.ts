@@ -25,7 +25,9 @@ export const ListCommand: ICommand = {
     const songs = queue?.songs
       .slice(pageIndex, pageIndex + MAX_LIST_SIZE)
       .map((song, i) => {
-        return `${i}. ${song.name} (${song.formattedDuration})`;
+        return `${i}. ${song.name} (${
+          song.formattedDuration
+        }) - requisitado por ${song.member?.displayName || "Desconhecido"}`;
       });
 
     if (!songs) {

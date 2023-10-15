@@ -10,20 +10,33 @@ export const SkipCommand: ICommand = {
   description: "Pula uma música",
   options: [
     {
-      name: "n",
-      description: "Pula as `n` primeiras músicas",
-      type: ApplicationCommandOptionType.Integer,
-      required: false,
-      minValue: 1,
-      autocomplete: true,
+      name: "first",
+      description: "Pula as primeiras músicas",
+      type: ApplicationCommandOptionType.Subcommand,
+      options: [
+        {
+          name: "n",
+          description: "Pula as `n` primeiras músicas",
+          type: ApplicationCommandOptionType.Integer,
+          minValue: 1,
+          autocomplete: true,
+        },
+      ],
     },
     {
       name: "at",
-      description: "Remove a música da posição `at` na fila",
-      type: ApplicationCommandOptionType.Integer,
-      required: false,
-      minValue: 1,
-      autocomplete: true,
+      description: "Pula a música na posição desejada",
+      type: ApplicationCommandOptionType.Subcommand,
+      options: [
+        {
+          name: "position",
+          description: "Pula a música na posição `position`",
+          type: ApplicationCommandOptionType.Integer,
+          minValue: 1,
+          required: true,
+          autocomplete: true,
+        },
+      ],
     },
     {
       name: "range",
@@ -52,8 +65,8 @@ export const SkipCommand: ICommand = {
     const rangeOptions: RangeOption[] = [
       {
         param: {
-          isSubcommand: false,
-          name: "n",
+          isSubcommand: true,
+          subcommand: "first",
         },
         range: (interaction) => {
           const n = interaction.options.getInteger("n", true);
@@ -62,11 +75,11 @@ export const SkipCommand: ICommand = {
       },
       {
         param: {
-          isSubcommand: false,
-          name: "at",
+          isSubcommand: true,
+          subcommand: "at",
         },
         range: (interaction) => {
-          const at = interaction.options.getInteger("at", true);
+          const at = interaction.options.getInteger("position", true);
           return [at, at];
         },
       },

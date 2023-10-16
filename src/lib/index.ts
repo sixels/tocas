@@ -53,7 +53,23 @@ export class Tocas {
   async start() {
     this.registerEventHandlers();
 
-    await this.client.login(this.token);
+    while (true) {
+      let retry = false;
+
+      try {
+        await this.client.login(this.token);
+      } catch (e) {
+        console.error(e);
+        retry = true;
+      }
+
+      if (!retry) {
+        break;
+      } else {
+        console.log("Restarting in 2 seconds...");
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      }
+    }
   }
 
   private registerEventHandlers() {
